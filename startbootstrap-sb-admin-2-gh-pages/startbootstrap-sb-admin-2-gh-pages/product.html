@@ -1257,7 +1257,7 @@
 
             console.log("od" + idupdate);
 
-            fetch("http://localhost:8080/api/products")
+            fetch("http://localhost:9191/api/products")
                 .then(response => {
                     if (!response.ok) {
                         throw new Error("Network response was not ok " + response.statusText);
@@ -1286,7 +1286,7 @@
                 //if (!validateProductData(formData)) return;
 
                 // Gửi dữ liệu lên server
-                fetch("http://localhost:8080/api/products", {
+                fetch("http://localhost:9191/api/products", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(formData),
@@ -1313,7 +1313,7 @@
 
                 let formData = getFormData("add");
 
-                fetch("http://localhost:8080/api/products/validate/CREATE", {
+                fetch("http://localhost:9191/api/products/validate/CREATE", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(formData),
@@ -1344,7 +1344,7 @@
                 //if (!validateProductData(formData)) return;
 
                 // Gửi dữ liệu lên server
-                fetch(`http://localhost:8080/api/products/${idupdate}`, {
+                fetch(`http://localhost:9191/api/products/${idupdate}`, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(formData),
@@ -1408,7 +1408,7 @@
 
                     let formData = getFormData("add");
 
-                fetch("http://localhost:8080/api/products/validate/CREATE", {
+                fetch("http://localhost:9191/api/products/validate/CREATE", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(formData),
@@ -1433,7 +1433,7 @@
 
 
         function deleteProduct(productId) {
-            fetch(`http://localhost:8080/api/products/${productId}`, {  // Đổi URL theo API của bạn
+            fetch(`http://localhost:9191/api/products/${productId}`, {  // Đổi URL theo API của bạn
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" }
             })
@@ -1524,7 +1524,7 @@
         }
 
         function fetchProductDetails(productId) {
-            fetch(`http://localhost:8080/api/products/${productId}`) // Gọi API lấy thông tin sản phẩm
+            fetch(`http://localhost:9191/api/products/${productId}`) // Gọi API lấy thông tin sản phẩm
                 .then(response => response.json())
                 .then(product => {
                     console.log(product);

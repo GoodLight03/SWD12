@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.swd.productservice.DTO.ProductDTO;
@@ -19,8 +20,8 @@ import com.swd.productservice.Entity.Product;
 import com.swd.productservice.Service.ProductServiceImpl;
 
 @RestController
-@RequestMapping("/api/products")
-@CrossOrigin
+@RequestMapping("/")
+//@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class ProductController {
     @Autowired
     private ProductServiceImpl productService;
