@@ -31,8 +31,8 @@ public class ProductDTO {
     private float donGiaBan;
 
     @Column(name = "FK_sMaLoai", length = 10)
-    private String maLoai;
+    private Integer maLoai;
 
     @Column(name = "FK_sMaNCC", length = 10)
-    private String maNCC;
+    private Integer maNCC;
 }
