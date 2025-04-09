@@ -9,8 +9,7 @@ import lombok.*;
 @Table(name = "tbl_SanPham")
 @Getter
 @Setter
- @NoArgsConstructor
-//@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

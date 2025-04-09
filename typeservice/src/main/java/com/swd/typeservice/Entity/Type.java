@@ -7,7 +7,7 @@ import lombok.*;
 @Table(name = "tbl_LoaiSanPham")
 @Getter
 @Setter
- @NoArgsConstructor
+@NoArgsConstructor
 public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

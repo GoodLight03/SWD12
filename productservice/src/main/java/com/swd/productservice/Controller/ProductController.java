@@ -21,7 +21,6 @@ import com.swd.productservice.Service.ProductServiceImpl;
 
 @RestController
 @RequestMapping("/")
-//@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class ProductController {
     @Autowired
     private ProductServiceImpl productService;
@@ -29,6 +28,11 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<Boolean> createProduct(@RequestBody ProductDTO productDTO) {
         return ResponseEntity.ok(productService.createProduct(productDTO));
+    }
+
+    @PostMapping("/validate/{action}")
+    public ResponseEntity<Boolean> valid(@PathVariable String action, @RequestBody ProductDTO productDTO) {
+        return ResponseEntity.ok(productService.validProduct(productDTO,action));
     }
 
     @GetMapping("/{id}")
@@ -52,8 +56,5 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAllProduct());
     }
 
-    @PostMapping("/validate/{action}")
-    public ResponseEntity<Boolean> valid(@PathVariable String action, @RequestBody ProductDTO productDTO) {
-        return ResponseEntity.ok(productService.validProduct(productDTO,action));
-    }
+   //@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 }

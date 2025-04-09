@@ -25,7 +25,6 @@ public class ProductServiceImpl implements IProductService {
             return false;
 
         Product product = new Product();
-        // productDTO.getMaSP(),
         product.setTenSanPham(productDTO.getTenSanPham());
         product.setDonViTinh(productDTO.getDonViTinh());
         product.setHanSuDung(productDTO.getHanSuDung());
@@ -63,7 +62,7 @@ public class ProductServiceImpl implements IProductService {
         if (!validProduct(productDTO, "UPDATE"))
             return false;
 
-         Optional<Product> existingProduct = productRepository.findById(id);
+        Optional<Product> existingProduct = productRepository.findById(id);
         if (!existingProduct.isPresent()) {
             storeLog("Cập nhật thất bại: Không tìm thấy sản phẩm " + id);
             return false;
@@ -99,10 +98,6 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public boolean validProduct(ProductDTO productDTO, String action) {
         // 1️ Kiểm tra trường dữ liệu rỗng
-        // if (isEmpty(productDTO.getMaSP())) {
-             storeLog("action" + productDTO.toString());
-        //     return false;
-        // }
         if (isEmpty(productDTO.getTenSanPham())) {
             storeLog(action + " thất bại: Tên sản phẩm không được để trống");
             return false;
@@ -111,11 +106,6 @@ public class ProductServiceImpl implements IProductService {
             storeLog(action + " thất bại: Đơn vị tính không được để trống");
             return false;
         }
-
-        // if (isEmpty(productDTO.getHanSuDung())) {
-        //     storeLog(action + " thất bại: Hạn sử dụng không được để trống");
-        //     return false;
-        // }
 
         // 2️ Kiểm tra số lượng & đơn giá phải >= 0
         if (productDTO.getSoLuong() < 0) {
@@ -131,7 +121,7 @@ public class ProductServiceImpl implements IProductService {
         // 3️ Kiểm tra hạn sử dụng phải lớn hơn ngày hiện tại
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-            LocalDate expirationDate = LocalDate.parse(productDTO.getHanSuDung().toString(), formatter);
+        LocalDate expirationDate = LocalDate.parse(productDTO.getHanSuDung().toString(), formatter);
 
         if (!isValidExpirationDate(expirationDate)) {
             storeLog(action + " thất bại: Hạn sử dụng phải lớn hơn ngày hiện tại");
@@ -141,7 +131,7 @@ public class ProductServiceImpl implements IProductService {
         // 4️ Nếu là CREATE, kiểm tra mã sản phẩm đã tồn tại chưa
         if ("CREATE".equalsIgnoreCase(action)) {
             Optional<Product> existingProduct = productRepository.findByNameName(productDTO.getTenSanPham());
-            //storeLog("action"+existingProduct.get());
+            // storeLog("action"+existingProduct.get());
             if (existingProduct.isPresent()) {
                 storeLog(productDTO.toString());
                 storeLog("CREATE thất bại: Tên sản phẩm " + productDTO.getTenSanPham() + " đã tồn tại");
@@ -149,7 +139,7 @@ public class ProductServiceImpl implements IProductService {
             }
         }
 
-        //  Hợp lệ
+        // Hợp lệ
         storeLog(action + " thành công: Dữ liệu hợp lệ");
         return true;
     }
@@ -166,7 +156,7 @@ public class ProductServiceImpl implements IProductService {
      */
     private boolean isValidExpirationDate(LocalDate expirationDate) {
         try {
-            
+
             return expirationDate.isAfter(LocalDate.now());
         } catch (DateTimeParseException e) {
             storeLog("Lỗi định dạng ngày: " + expirationDate + " (Định dạng hợp lệ: yyyy-MM-dd)");
